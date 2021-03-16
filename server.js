@@ -30,7 +30,7 @@ connection.once('open',()=>{
 
 require('./Routes/web')(app)
 
-app.listen(3000,()=>{
+app.listen(process.env.PORT,()=>{
     console.log('Node connected')
 })
 
