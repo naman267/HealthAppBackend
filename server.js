@@ -35,3 +35,4 @@ app.listen(process.env.PORT,()=>{
 })
 
 
+//MONGO_URL=mongodb+srv://HealthApp:namanjain@cluster0.0m3m0.mongodb.net/healthApp;
