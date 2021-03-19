@@ -2,14 +2,23 @@ const Disease = require('../models/disease')
 
 function controller() {
   return {
-    diseaseList(req, res) {
+    diseaseListInternal(req, res) {
       
 
-      Disease.find({}).then((disease) => {
+      Disease.find({category:'Internal'}).then((disease) => {
+        console.log(disease)
+        res.json(disease)
+      })
+    },
+    diseaseListExternal(req, res) {
+      
+
+      Disease.find({category:'External'}).then((disease) => {
         console.log(disease)
         res.json(disease)
       })
     }
+
   }
 }
 
