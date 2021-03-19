@@ -3,8 +3,7 @@ const Disease = require('../models/disease')
 function controller() {
   return {
     diseaseListInternal(req, res) {
-      
-
+   
       Disease.find({category:'Internal'}).then((disease) => {
         console.log(disease)
         res.json(disease)
