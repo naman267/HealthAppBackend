@@ -2,11 +2,11 @@
   "name": "hack_backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "env-cmd -f dev.env nodemon server.js -e js,json"
+    "dev": "env-cmd -f config/dev.env nodemon server.js -e js,json"
   },
   "keywords": [],
   "author": "",
