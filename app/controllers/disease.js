@@ -16,6 +16,11 @@ function controller() {
         console.log(disease)
         res.json(disease)
       })
+    },
+    singleDisease(req,res){
+       Disease.find({title:req.params.title}).then(disease=>{
+         res.json(disease)
+       })
     }
 
   }
