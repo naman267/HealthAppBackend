@@ -31,6 +31,14 @@ connection.once('open', () => {
   console.log('Established')
 })
 
+// routes
+// home
+app.get('/', (req, res) => {
+  res.json({
+    connected: true
+  })
+})
+
 require('./Routes/web')(app)
 
 app.listen(process.env.PORT, () => {
