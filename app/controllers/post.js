@@ -59,7 +59,17 @@ function post() {
       })
       post.save()
       res.json(post)
-    }
+    },
+    givepost(req,res)
+    {
+      
+
+      Post.find({})
+        .then((post) => {
+          console.log(post[0])
+          return res.json(post[0])
+        }) 
+    } 
   }
 }
 

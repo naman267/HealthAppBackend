@@ -10,6 +10,7 @@ function initRoutes(app) {
   app.get('/post/upvote/:id', post().upvotee)
   app.get('/post/downvote/:id', post().downvotee)
   app.post('/makepost', post().makepost)
+  app.get('/getpost',post().givepost)
 }
 
 module.exports = initRoutes
