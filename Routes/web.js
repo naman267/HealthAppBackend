@@ -11,6 +11,7 @@ function initRoutes(app) {
   app.get('/post/downvote/:id', post().downvotee)
   app.post('/makepost', post().makepost)
   app.get('/getpost',post().givepost)
+  app.get('/ss')
 }
 
 module.exports = initRoutes
