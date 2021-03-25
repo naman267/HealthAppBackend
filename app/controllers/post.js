@@ -5,15 +5,29 @@ function post() {
   return {
     async upvotee(req, res) {
       const postId = req.params.id
+      const votedBy = req.query.user
       const post = await Post.findById(postId)
-      post.upvote = post.upvote + 1
-      post.totalvotes = post.totalvotes + 1
+
+      const idx = post.upvotedBy.findIndex((user) => user === votedBy)
+      if (idx === -1) {
+        post.upvotedBy.push(votedBy)
+        const idx1 = post.downvotedBy.findIndex((user) => user === votedBy)
+        if (idx1 === -1) {
+          post.upvote = post.upvote + 1
+          post.totalvotes = post.totalvotes + 1
+        } else {
+          post.downvotedBy.splice(idx1, 1)
+          post.upvote = post.upvote + 2
+        }
+      }
+
+      post.userExisted = idx !== -1
       post.save()
       res.json(post)
     },
+
     getpost(req, res) {
       const title = req.params.title
-
       Post.find({ title: title })
         .sort('-upvote')
         .then((post) => {
@@ -21,15 +35,30 @@ function post() {
           return res.json(post)
         })
     },
+
     async downvotee(req, res) {
       const postId = req.params.id
+      const votedBy = req.query.user
       const post = await Post.findById(postId)
-      post.upvote = post.upvote - 1
-      post.totalvotes = post.totalvotes + 1
 
+      const idx = post.downvotedBy.findIndex((user) => user === votedBy)
+      if (idx === -1) {
+        post.downvotedBy.push(votedBy)
+        const idx1 = post.upvotedBy.findIndex((user) => user === votedBy)
+        if (idx1 === -1) {
+          post.upvote = post.upvote - 1
+          post.totalvotes = post.totalvotes + 1
+        } else {
+          post.upvotedBy.splice(idx1, 1)
+          post.upvote = post.upvote - 2
+        }
+      }
+
+      post.userExisted = idx !== -1
       post.save()
       res.json(post)
     },
+
     async makepost(req, res) {
       console.log('request accepted')
       const title = req.body.title
@@ -60,16 +89,13 @@ function post() {
       post.save()
       res.json(post)
     },
-    givepost(req,res)
-    {
-      
 
-      Post.find({})
-        .then((post) => {
-          console.log(post[0])
-          return res.json(post[0])
-        }) 
-    } 
+    givepost(req, res) {
+      Post.find({}).then((post) => {
+        console.log(post[0])
+        return res.json(post[0])
+      })
+    }
   }
 }
 
