@@ -1,7 +1,5 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const Disease = require('./app/models/disease')
-const Post = require('./app/models/post')
 var multer = require('multer')
 
 const app = express()
