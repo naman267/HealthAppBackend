@@ -12,7 +12,7 @@ const postSchema = new Schema({
   verified: { type: Boolean, default: false },
   upvotedBy: { type: [String], default: null },
   downvotedBy: { type: [String], default: null },
-  upvote: { type: Number, default: 0 },
+  
   downvote: { type: Number, default: 0 },
   userExisted: { type: String, default: false }
 })
